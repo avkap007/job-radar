@@ -4,22 +4,31 @@
     <title>Job Comparison Radar Charts</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
         .button-container {
-            margin: 20px;
+            margin: 20px 0;
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
             justify-content: center;
         }
         .job-button {
-            padding: 10px 20px;
+            padding: 8px 16px;
             background-color: #4ECDC4;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
-            min-width: 120px;
+            min-width: 150px;
+            font-size: 14px;
+            text-align: left;
+            white-space: nowrap;
         }
         .job-button:hover {
             background-color: #3BA3B8;
@@ -28,23 +37,30 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
-            margin: 20px;
-            width: 100%;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 20px 0;
         }
         .chart-container {
             width: 100%;
             height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
         canvas {
             width: 100%;
             height: 100%;
         }
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
+    <div class="title">Job Comparison Radar Charts</div>
     <div class="button-container">
         <!-- Job buttons will be added here by JavaScript -->
     </div>
@@ -66,26 +82,27 @@
     <script>
         // Job data structure
         const jobs = [
-            { id: 1, name: 'Job 1', data: [85, 75, 65, 90, 80, 70] },
-            { id: 2, name: 'Job 2', data: [90, 60, 80, 75, 85, 75] },
-            { id: 3, name: 'Job 3', data: [75, 85, 90, 80, 70, 65] },
-            { id: 4, name: 'Job 4', data: [80, 80, 75, 85, 90, 70] },
-            { id: 5, name: 'Job 5', data: [95, 70, 85, 75, 80, 65] },
-            { id: 6, name: 'Job 6', data: [70, 90, 80, 90, 75, 85] },
-            { id: 7, name: 'Job 7', data: [85, 85, 70, 80, 95, 75] },
-            { id: 8, name: 'Job 8', data: [90, 75, 90, 75, 80, 85] },
-            { id: 9, name: 'Job 9', data: [75, 80, 85, 90, 70, 90] },
-            { id: 10, name: 'Job 10', data: [80, 90, 75, 85, 85, 70] },
-            { id: 11, name: 'Job 11', data: [95, 70, 90, 75, 90, 80] },
-            { id: 12, name: 'Job 12', data: [70, 85, 80, 90, 75, 95] },
-            { id: 13, name: 'Job 13', data: [85, 80, 95, 80, 80, 85] },
-            { id: 14, name: 'Job 14', data: [90, 75, 75, 90, 85, 70] },
-            { id: 15, name: 'Job 15', data: [75, 90, 85, 75, 90, 80] },
-            { id: 16, name: 'Job 16', data: [80, 85, 70, 85, 75, 90] },
-            { id: 17, name: 'Job 17', data: [95, 70, 90, 75, 80, 85] },
-            { id: 18, name: 'Job 18', data: [70, 85, 80, 90, 95, 75] },
-            { id: 19, name: 'Job 19', data: [85, 80, 95, 80, 75, 90] },
-            { id: 20, name: 'Job 20', data: [90, 75, 75, 90, 85, 70] }
+            { id: 1, name: 'Product Manager', data: [3, 3, 3, 3, 3, 2] },
+            { id: 2, name: 'Software Engineer', data: [3, 3, 2, 2, 3, 2] },
+            { id: 3, name: 'Product Designer', data: [3, 4, 3, 3, 2] },
+            { id: 4, name: 'UI/UX Designer', data: [2, 3, 4, 3, 3, 2] },
+            { id: 5, name: 'Biomedical/Biomechanical', data: [3, 3, 1, 1, 1, 3] },
+            { id: 6, name: 'Sustainable Energy', data: [3, 3, 1, 1, 1, 3] },
+            { id: 7, name: 'Game/VR', data: [3, 2, 3, 3, 2, 2] },
+            { id: 8, name: 'QA Tester', data: [1, 4, 1, 1, 1, 2] },
+            { id: 9, name: 'DevOps', data: [1, 4, 1, 1, 3, 2] },
+            { id: 10, name: 'Cybersecurity', data: [2, 3, 1, 1, 2, 2] },
+            { id: 11, name: 'Electrical', data: [2, 4, 1, 1, 1, 2] },
+            { id: 12, name: 'Research', data: [2, 4, 4, 3, 4, 5] },
+            { id: 13, name: 'Tech for Science', data: [2, 4, 3, 2, 2, 2] },
+            { id: 14, name: 'Doctor+', data: [4, 3, 1, 1, 1, 5] },
+            { id: 15, name: 'Data/Business Analyst', data: [2, 4, 1, 1, 3, 2] },
+            { id: 16, name: 'Quant', data: [4, 2, 1, 1, 2, 3] },
+            { id: 17, name: 'IT', data: [1, 5, 1, 1, 1, 2] },
+            { id: 18, name: 'Mechatronic', data: [3, 3, 3, 2, 1, 2] },
+            { id: 19, name: 'Computer Engineer', data: [3, 3, 2, 1, 2, 2] },
+            { id: 20, name: 'AI Research', data: [3, 3, 1, 1, 1, 4] },
+            { id: 21, name: 'Founder', data: [5, 2, 5, 5, 5, 2] }
         ];
 
         // Create job buttons
@@ -95,69 +112,131 @@
             button.className = 'job-button';
             button.textContent = job.name;
             button.onclick = () => {
-                // Update charts immediately
                 updateCharts(job);
+                console.log('Clicked:', job.name);
             };
             buttonContainer.appendChild(button);
         });
 
         // Initialize display charts
         const displayCharts = [];
-        const chartConfigs = {
-            type: 'radar',
-            data: {
-                labels: [
-                    'Salary',
-                    'Work Life Balance',
-                    'Creativity',
-                    'Autonomy',
-                    'Travel/Remote Opportunities',
-                    'Education Requirement'
-                ],
-                datasets: []
-            },
-            options: {
-                elements: {
-                    line: {
-                        borderWidth: 3
-                    }
-                },
-                plugins: {
-                    legend: {
-                        position: 'top',
-                        align: 'start'
-                    }
-                },
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        };
-
-        // Create charts
+        
+        // Create charts with basic configuration first
         for (let i = 1; i <= 4; i++) {
             const ctx = document.getElementById(`display${i}`).getContext('2d');
-            displayCharts.push(new Chart(ctx, chartConfigs));
+            const chart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: [
+                        'Salary',
+                        'Work Life Balance',
+                        'Creativity',
+                        'Autonomy',
+                        'Travel/Remote',
+                        'Education'
+                    ],
+                    datasets: []
+                },
+                options: {
+                    elements: {
+                        line: {
+                            borderWidth: 3
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'start'
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 5,
+                            ticks: {
+                                stepSize: 1,
+                                backdropColor: 'rgba(255,255,255,0.9)'
+                            },
+                            angleLines: {
+                                color: '#ddd'
+                            },
+                            grid: {
+                                color: '#eee'
+                            },
+                            pointLabels: {
+                                display: true,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            displayCharts.push(chart);
         }
+
+        // Queue to track recently clicked jobs
+        const recentJobs = [];
 
         function updateCharts(job) {
-            // Update first chart with new job data
-            const chart = displayCharts[0];
-            chart.data.datasets = [{
-                label: job.name,
-                data: job.data,
-                fill: true,
-                backgroundColor: 'rgba(78, 205, 196, 0.2)',
-                borderColor: '#4ECDC4',
-                pointBackgroundColor: '#4ECDC4',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: '#4ECDC4'
-            }];
-            chart.update();
+            // Add to recent jobs queue
+            const index = recentJobs.findIndex(j => j.id === job.id);
+            if (index > -1) {
+                recentJobs.splice(index, 1);
+            }
+            recentJobs.unshift(job);
+            if (recentJobs.length > 4) {
+                recentJobs.pop();
+            }
+
+            // Update display charts
+            recentJobs.forEach((job, index) => {
+                const chart = displayCharts[index];
+                const color = `hsl(${job.id * 20}, 70%, 50%)`;
+                
+                // Update chart data
+                chart.data = {
+                    labels: [
+                        'Salary',
+                        'Work Life Balance',
+                        'Creativity',
+                        'Autonomy',
+                        'Travel/Remote',
+                        'Education'
+                    ],
+                    datasets: [{
+                        label: job.name,
+                        data: job.data,
+                        fill: true,
+                        backgroundColor: `rgba(${color}, 0.2)`,
+                        borderColor: color,
+                        pointBackgroundColor: color,
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: color
+                    }]
+                };
+                
+                // Update chart
+                chart.update();
+            });
         }
 
-        // Initialize first chart with Job 1
-        updateCharts(jobs[0]);
+        // Initialize charts with first 4 jobs
+        jobs.slice(0, 4).forEach(job => {
+            updateCharts(job);
+        });
+
+        // Add initial data to all charts
+        displayCharts.forEach((chart, index) => {
+            if (chart.data.datasets.length === 0) {
+                const job = jobs[index + 4] || jobs[0]; // Use next job or first job if needed
+                updateCharts(job);
+            }
+        });
     </script>
 </body>
 </html>
