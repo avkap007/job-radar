@@ -1,0 +1,254 @@
+[
+  {
+    "id": 1,
+    "name": "Product Manager",
+    "data": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      2
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Software Engineer",
+    "data": [
+      3,
+      3,
+      2,
+      2,
+      3,
+      2
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Product Designer",
+    "data": [
+      3,
+      4,
+      3,
+      3,
+      2,
+      2
+    ]
+  },
+  {
+    "id": 4,
+    "name": "UI/UX Designer",
+    "data": [
+      2,
+      3,
+      4,
+      3,
+      3,
+      2
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Biomedical/Biomechanical",
+    "data": [
+      3,
+      3,
+      1,
+      1,
+      1,
+      3
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Sustainable Energy",
+    "data": [
+      3,
+      3,
+      1,
+      1,
+      1,
+      3
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Game/VR",
+    "data": [
+      3,
+      2,
+      3,
+      3,
+      2,
+      2
+    ]
+  },
+  {
+    "id": 8,
+    "name": "QA Tester",
+    "data": [
+      1,
+      4,
+      1,
+      1,
+      1,
+      2
+    ]
+  },
+  {
+    "id": 9,
+    "name": "DevOps",
+    "data": [
+      1,
+      4,
+      1,
+      1,
+      3,
+      2
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Cybersecurity",
+    "data": [
+      2,
+      3,
+      1,
+      1,
+      2,
+      2
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Electrical",
+    "data": [
+      2,
+      4,
+      1,
+      1,
+      1,
+      2
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Research",
+    "data": [
+      2,
+      4,
+      4,
+      3,
+      4,
+      5
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Tech for Science",
+    "data": [
+      2,
+      4,
+      3,
+      2,
+      2,
+      2
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Doctor+",
+    "data": [
+      4,
+      3,
+      1,
+      1,
+      1,
+      5
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Data/Business Analyst",
+    "data": [
+      2,
+      4,
+      1,
+      1,
+      3,
+      2
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Quant",
+    "data": [
+      4,
+      2,
+      1,
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "id": 17,
+    "name": "IT",
+    "data": [
+      1,
+      5,
+      1,
+      1,
+      1,
+      2
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Mechatronic",
+    "data": [
+      3,
+      3,
+      3,
+      2,
+      1,
+      2
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Computer Engineer",
+    "data": [
+      3,
+      3,
+      2,
+      1,
+      2,
+      2
+    ]
+  },
+  {
+    "id": 20,
+    "name": "AI Research",
+    "data": [
+      3,
+      3,
+      1,
+      1,
+      1,
+      4
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Founder",
+    "data": [
+      5,
+      2,
+      5,
+      5,
+      5,
+      2
+    ]
+  }
+]

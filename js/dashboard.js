@@ -162,6 +162,7 @@ function drawSkillBlob(data) {
 }
 
 function drawEducationChart(data) {
+  console.log('drawEducationChart called, data length:', data.length);
   const eduCounts = {
     "Bachelors": 0,
     "Masters": 0,
@@ -192,23 +193,75 @@ function drawEducationChart(data) {
     }
   });
 
+  // Debug: log the education categories and their counts
+  console.log('Education categories:', Object.keys(eduCounts));
+  console.log('Education counts:', Object.values(eduCounts));
+
+  // Remove any previous chart area and add a crisp bar chart container
+  const area = document.getElementById("educationChartArea");
+  area.innerHTML = '';
+  const box = document.createElement('div');
+  box.className = 'chart-box bar-crisp';
   const ctx = document.createElement("canvas");
   ctx.id = "educationChart";
-  document.getElementById("educationChartArea").appendChild(ctx);
+  box.appendChild(ctx);
+  area.appendChild(box);
+
+  const barColors = [
+    'rgba(54, 162, 235, 0.7)',
+    'rgba(255, 205, 86, 0.7)',
+    'rgba(255, 99, 132, 0.7)',
+    'rgba(75, 192, 192, 0.7)',
+    'rgba(153, 102, 255, 0.7)'
+  ];
+  const borderColors = [
+    'rgb(54, 162, 235)',
+    'rgb(255, 205, 86)',
+    'rgb(255, 99, 132)',
+    'rgb(75, 192, 192)',
+    'rgb(153, 102, 255)'
+  ];
 
   new Chart(ctx, {
-    type: "bar",
+    type: 'bar',
     data: {
       labels: Object.keys(eduCounts),
       datasets: [{
-        label: "Mentions of Education Level",
+        label: 'Edu. Level',
         data: Object.values(eduCounts),
-        backgroundColor: "#fcb900"
+        backgroundColor: barColors,
+        borderColor: borderColors,
+        borderWidth: 2
       }]
     },
     options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          labels: {
+            font: { size: 10, weight: 'bold' }
+          }
+        },
+        tooltip: {
+          enabled: true,
+          callbacks: {
+            label: function(context) {
+              return `${context.label}: ${context.parsed.y}`;
+            }
+          }
+        }
+      },
       scales: {
-        y: { beginAtZero: true }
+        x: {
+          ticks: { font: { size: 13 } },
+          grid: { color: 'rgba(0,0,0,0.05)' }
+        },
+        y: {
+          beginAtZero: true,
+          ticks: { font: { size: 13 } },
+          grid: { color: 'rgba(0,0,0,0.08)' }
+        }
       }
     }
   });

@@ -150,36 +150,43 @@ canvas {
   margin: 0 auto 30px;
   padding: 10px 15px;
   font-size: 16px;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-  background: white;
-  color: #333;
+  border-radius: 12px;
+  border: 1.5px solid rgba(173, 216, 230, 0.35);
+  background: rgba(173, 216, 230, 0.25);
+  color: #2c3e50;
+  font-weight: 600;
+  box-shadow: 0 2px 12px rgba(31, 38, 135, 0.07);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
+#jobTypeSelector:focus {
+  outline: none;
+  border-color: #36A2EB;
+  box-shadow: 0 4px 16px rgba(31, 38, 135, 0.10);
+}
+
 /* === Dashboard Grid Layout === */
 .dashboard-grid {
   display: flex;
-  gap: 32px;
-  margin: 56px auto 0 auto;
-  max-width: 1300px;
+  gap: 18px;
+  margin: 36px auto 0 auto;
+  max-width: 1100px;
   justify-content: space-between;
   padding: 0 8px;
 }
 
-.dashboard-left, .dashboard-right {
-  padding-top: 8px;
-}
-
 .dashboard-left {
   flex: 2;
-  max-width: 800px;
-  min-width: 600px;
+  max-width: 700px;
+  min-width: 400px;
 }
 
 .dashboard-right {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
   justify-content: flex-start;
   max-width: 320px;
 }
@@ -190,8 +197,15 @@ canvas {
   padding: 14px 14px 10px 14px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
   backdrop-filter: blur(4px);
-  height: 340px;
+  height: 380px;
   overflow: hidden;
+}
+
+.chart-box.bar-crisp {
+  height: 320px;
+  min-height: 220px;
+  max-width: 620px;
+  padding: 8px;
 }
 
 .chart-box.small {
@@ -279,7 +293,7 @@ canvas {
 }
 
 .right-title {
-  text-align: left;
+  text-align: center;
   margin: 0 0 10px 0;
   font-size: 22px;
 }
@@ -330,7 +344,7 @@ canvas {
   box-shadow: none;
   border: none;
   padding: 0;
-  height: 320px;
+  height: 420px;
   width: 100%;
   min-width: 0;
   max-width: none;
@@ -349,17 +363,17 @@ canvas {
   max-height: 100% !important;
   min-width: 0 !important;
   min-height: 0 !important;
-  aspect-ratio: 2/1 !important;
+  aspect-ratio: 1/1 !important;
   display: block;
   margin: 0 auto;
 }
 
 /* Center the legend at the bottom */
 .chartjs-render-monitor + .chartjs-legend {
-  display: flex !important;
-  justify-content: center !important;
-  width: 100% !important;
-  margin: 0 auto !important;
+  display: flex;
+  justify-content: center;
+  width: auto;
+  margin: 0 auto;
 }
 
 /* 4. Remove horizontal line */
@@ -387,11 +401,12 @@ h1, h2, h3, h4, h5, h6, hr {
 /* Dashboard left chart (salary) taller */
 .dashboard-left .chart-box {
   height: 420px;
+  width: 720px;
 }
 
 /* Remote chart: hardcoded size, centered, no card */
 .remote-no-card {
-  width: 230px !important;
+  width: 220px !important;
   height: 200px !important;
   background: none !important;
   box-shadow: none !important;
@@ -403,7 +418,7 @@ h1, h2, h3, h4, h5, h6, hr {
   padding: 0 !important;
 }
 #remoteChart {
-  width: 230px !important;
+  width: 220px !important;
   height: 200px !important;
   min-width: 0 !important;
   min-height: 0 !important;
