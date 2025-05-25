@@ -49,7 +49,7 @@ for (let i = 1; i <= 4; i++) {
 }
 
 // Fetch jobs.json and create buttons
-fetch('jobs.json')
+fetch('https://pub-996255c4a0d54b46a78714bf4395d8be.r2.dev/jobs.json')
     .then(response => response.json())
     .then(jobs => {
         jobs.forEach(job => {

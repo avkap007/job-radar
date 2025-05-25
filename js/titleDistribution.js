@@ -8,6 +8,10 @@ const labels = [
   'Software Engineering'
 ];
 
+const shortLabels = [
+  'CS', 'DS', 'IT', 'PM', 'SWE'
+];
+
 const values = [
   15551,  // Cybersecurity
   8934,   // Data Science
@@ -36,9 +40,35 @@ new Chart(ctxTitle, {
   },
   options: {
     responsive: true,
+    layout: {
+      padding: 20
+    },
     plugins: {
       legend: {
-        position: 'right'
+        position: 'bottom',
+        labels: {
+          generateLabels: function(chart) {
+            const original = Chart.defaults.plugins.legend.labels.generateLabels;
+            const labelsArr = original(chart);
+            return labelsArr.map((item, i) => ({
+              ...item,
+              text: shortLabels[i] || item.text
+            }));
+          },
+          font: {
+            size: 18,
+            weight: 'bold'
+          },
+          padding: 18
+        },
+        align: 'center'
+      }
+    },
+    scale: {
+      ticks: {
+        font: {
+          size: 16
+        }
       }
     }
   }

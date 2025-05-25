@@ -1,84 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Job Comparison Radar Charts</title>
     <meta charset="UTF-8">
+    <title>Job Comparison Radar Charts</title>
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 24px;
-            margin: 40px 0 20px;
-            color: #333;
-        }
-        .button-container {
-            margin: 20px 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-        .job-button {
-            padding: 8px 16px;
-            background-color: #4ECDC4;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            min-width: 150px;
-            font-size: 14px;
-            text-align: left;
-            white-space: nowrap;
-        }
-        .job-button:hover {
-            background-color: #3BA3B8;
-        }
-        .display-area {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin: 20px 0;
-        }
-        .chart-container {
-            width: 100%;
-            height: 400px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        canvas {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
 </head>
 <body>
-
-    <div class="section-title">Anecdotal Career Snapshots</div>
-    <div class="button-container" id="anecdotal-buttons"></div>
-    <div class="display-area" id="anecdotal-charts">
-        <div class="chart-container"><canvas id="display1"></canvas></div>
-        <div class="chart-container"><canvas id="display2"></canvas></div>
-        <div class="chart-container"><canvas id="display3"></canvas></div>
-        <div class="chart-container"><canvas id="display4"></canvas></div>
+    <div class="animated-lines"></div>
+    <div class="main-flex-layout">
+        <div class="anecdotal-left">
+            <div class="section-title">Anecdotal Career Snapshots</div>
+            <div class="section-blurb">Compare anecdotal ratings for different careers across key factors.</div>
+            <div class="button-container" id="anecdotal-buttons"></div>
+            <div class="display-area" id="anecdotal-charts">
+                <div class="chart-container"><canvas id="display1"></canvas></div>
+                <div class="chart-container"><canvas id="display2"></canvas></div>
+                <div class="chart-container"><canvas id="display3"></canvas></div>
+                <div class="chart-container"><canvas id="display4"></canvas></div>
+            </div>
+        </div>
+        <div class="anecdotal-right">
+            <details class="explanation-collapse" open>
+                <summary>What do these axes mean?</summary>
+                <ul class="explanation-list">
+                    <li><b>Salary</b>: Typical compensation for the role.</li>
+                    <li><b>Work Life Balance</b>: Flexibility and reasonable hours.</li>
+                    <li><b>Education</b>: Typical education or credentials required.</li>
+                    <li><b>Creativity</b>: How much creative thinking is involved.</li>
+                    <li><b>Autonomy</b>: Independence and self-direction in the role.</li>
+                    <li><b>Travel/Remote</b>: Opportunities for remote work or travel.</li>
+                </ul>
+            </details>
+            <div>
+                <div class="section-title right-title">Job Title Distribution</div>
+                <div class="section-blurb">See the relative prevalence of job titles in the dataset.</div>
+                <div class="right-job-title no-bg">
+                    <canvas id="titleDistributionChart"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
-    <hr>
-    <div class="section-title">Job Title Distribution</div>
-    <div class="chart-container" style="margin: 0 auto; width: 600px;">
-        <canvas id="titleDistributionChart"></canvas>
-    </div>
-
-    <!-- Load JS scripts -->
+    <div class="section-title">Interactive Job Dashboard</div>
+    <div class="section-blurb">Explore salary, remote work, education, and skill trends for each job category.</div>
+    <select id="jobTypeSelector">
+        <option disabled selected>Select a job category</option>
+        <option>Product Management</option>
+        <option>Cybersecurity</option>
+        <option>Software Engineering</option>
+        <option>Data Science</option>
+        <option>IT</option>
+    </select>
+    <div id="visualizationContainer"></div>
+    <!-- Scripts -->
     <script src="js/radarAnecdotal.js"></script>
     <script src="js/titleDistribution.js"></script>
-
+    <script src="js/dashboard.js"></script>
+    <div class="footer-xdhacks">Made with &lt;3 for xdHACKS</div>
 </body>
 </html>

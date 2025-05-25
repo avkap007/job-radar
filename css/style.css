@@ -1,0 +1,497 @@
+/* === Base Layout === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  padding: 10px 20px 20px 20px;
+  max-width: 1500px;
+  background: #f9f9ff;
+  color: #222;
+  position: relative;
+  z-index: 1;
+}
+
+/* === Dynamic Background Effects (softer, slower) === */
+.animated-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(300deg, #ffe0e9, #fdf6b2, #b6f0e6, #bcdffb, #d6c8fa, #f8d6ec);
+  background-size: 400% 400%;
+  animation: gradient-animation 18s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-lines::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.18) 1px,
+    transparent 1px
+  );
+  background-size: 30px 30px;
+  animation: grid-animation 20s linear infinite;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+@keyframes grid-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* === Section Titles === */
+.section-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 38px 0 8px 0;
+  color: #2c3e50;
+  letter-spacing: 0.01em;
+}
+
+/* === Button Group === */
+.button-container {
+  margin: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* 3. Glassmorphism for job buttons (smaller, more color) */
+.job-button {
+  padding: 8px 16px;
+  background: rgba(173, 216, 230, 0.25);
+  color: #2c3e50;
+  border: 1.5px solid rgba(173, 216, 230, 0.35);
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 12px rgba(31, 38, 135, 0.07);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  margin-bottom: 2px;
+}
+.job-button:hover {
+  background: rgba(100, 181, 246, 0.25);
+  color: #003e6b;
+  box-shadow: 0 4px 16px rgba(31, 38, 135, 0.10);
+}
+
+/* === Grid Layout === */
+.display-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 18px;
+  width: 100%;
+  height: 560px;
+  margin: 0 auto;
+}
+
+/* === Chart Cards === */
+.chart-container {
+  background: #ffffffcc;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.07);
+  backdrop-filter: blur(6px);
+  height: 420px;
+  overflow: hidden;
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.centered-chart {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* === Selector Styling === */
+#jobTypeSelector {
+  display: block;
+  margin: 0 auto 30px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  background: white;
+  color: #333;
+}
+/* === Dashboard Grid Layout === */
+.dashboard-grid {
+  display: flex;
+  gap: 32px;
+  margin: 56px auto 0 auto;
+  max-width: 1300px;
+  justify-content: space-between;
+  padding: 0 8px;
+}
+
+.dashboard-left, .dashboard-right {
+  padding-top: 8px;
+}
+
+.dashboard-left {
+  flex: 2;
+  max-width: 800px;
+  min-width: 600px;
+}
+
+.dashboard-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  justify-content: flex-start;
+  max-width: 320px;
+}
+
+.chart-box {
+  background: #ffffffcc;
+  border-radius: 12px;
+  padding: 14px 14px 10px 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  backdrop-filter: blur(4px);
+  height: 340px;
+  overflow: hidden;
+}
+
+.chart-box.small {
+  height: 120px;
+  min-height: 100px;
+  max-width: 260px;
+  padding: 8px 8px 4px 8px;
+}
+
+/* === Skill Blob Styling === */
+.skill-blob-container {
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-height: 60px;
+  margin-top: 0;
+  width: 100%;
+}
+
+.skill-blob {
+  background: none;
+  padding: 0 4px;
+  border-radius: 0;
+  font-weight: 600;
+  color: #003e6b;
+  display: inline-block;
+  line-height: 1.2;
+  /* Add some random rotation and scaling for word cloud effect */
+  transform: rotate(calc(-10deg + 20deg * var(--rand, 0))) scale(calc(0.95 + 0.2 * var(--rand, 0)));
+}
+
+/* === Main Flex Layout for Anecdotal Section === */
+.main-flex-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  max-width: 1300px;
+  margin: 0 auto 32px auto;
+  align-items: flex-start;
+}
+
+.anecdotal-left {
+  width: 800px;
+  min-width: 800px;
+  max-width: 800px;
+}
+
+.anecdotal-left .chart-container {
+  height: 260px;
+  min-height: 220px;
+  width: 100%;
+  max-width: 380px;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 12px;
+}
+
+.anecdotal-right {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 420px;
+  min-width: 420px;
+  max-width: 420px;
+}
+
+.empty-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.07);
+  height: 200px;
+  width: 100%;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: #bbb;
+}
+
+.right-title {
+  text-align: left;
+  margin: 0 0 10px 0;
+  font-size: 22px;
+}
+
+.right-job-title {
+  height: 260px;
+  width: 100%;
+  max-width: 420px;
+  min-width: 420px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* === Collapsible Explanation Section === */
+.explanation-collapse {
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 18px;
+  padding: 24px 28px 12px 28px;
+  margin-bottom: 24px;
+  font-size: 16px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow 0.2s;
+}
+.explanation-collapse[open] summary {
+  font-weight: 700;
+  font-size: 20px;
+  color: #2c3e50;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+.explanation-list {
+  margin: 12px 0 0 0;
+  padding-left: 22px;
+  color: #2c3e50;
+  font-size: 16px;
+}
+.explanation-list li {
+  margin-bottom: 8px;
+  line-height: 1.7;
+}
+
+/* === Job Title Distribution No Card Look (improved) === */
+.right-job-title.no-bg {
+  background: none;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+  height: 320px;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right-job-title.no-bg canvas {
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  aspect-ratio: 2/1 !important;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Center the legend at the bottom */
+.chartjs-render-monitor + .chartjs-legend {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+/* 4. Remove horizontal line */
+h1, h2, h3, h4, h5, h6, hr {
+  display: none !important;
+}
+
+/* Remove card look for remote and education charts */
+#remoteChart, #educationChart {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+#educationChartArea, #remoteChart {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+#educationChartArea .chart-box, #remoteChart .chart-box {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Dashboard left chart (salary) taller */
+.dashboard-left .chart-box {
+  height: 420px;
+}
+
+/* Remote chart: hardcoded size, centered, no card */
+.remote-no-card {
+  width: 230px !important;
+  height: 200px !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px auto;
+  padding: 0 !important;
+}
+#remoteChart {
+  width: 230px !important;
+  height: 200px !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Education chart: hardcoded size, longer, centered, no card */
+.education-no-card {
+  width: 340px !important;
+  height: 410px !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0 auto;
+  padding: 0 !important;
+}
+#educationChartArea {
+  width: 340px !important;
+  height: 410px !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 !important;
+}
+#educationChart {
+  width: 340px !important;
+  height: 410px !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Skill blob: word cloud style, no background, multi-line, organic */
+#skillBlobArea {
+  width: 100%;
+  max-width: 800px;
+  margin: 18px auto 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: none !important;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  backdrop-filter: none;
+  min-height: 80px;
+}
+
+/* Footer glassmorphism */
+.footer-xdhacks {
+  width: 100vw;
+  text-align: center;
+  padding: 18px 0 12px 0;
+  font-size: 16px;
+  color: #2c3e50;
+  background: rgba(255,255,255,0.45);
+  border-top: 1.5px solid rgba(255,255,255,0.25);
+  box-shadow: 0 -2px 12px rgba(31,38,135,0.07);
+  backdrop-filter: blur(8px);
+  position: relative;
+  margin-top: 40px;
+  letter-spacing: 0.5px;
+}
+
+/* Section blurb style */
+.section-blurb {
+  text-align: center;
+  font-size: 15px;
+  color: #4e5d6c;
+  margin: 0 0 18px 0;
+  font-weight: 400;
+  opacity: 0.85;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
